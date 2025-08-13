@@ -3,10 +3,6 @@
 Este repositorio explica la instalación y despliegue local del prototipo de software desarrollado como trabajo de titulación del Teniente Segundo Agustín Riquelme Duque, cuyo tema es:
 **Transcripción y clasificación automática de audios según su contenido y relevancia.**
 
-Contacto
-- ariquelmed@asdjas.com
-- +569 1234568789
-
 ## Tabla de contenidos
 
 - [Requisitos técnicos](#requisitos-tecnicos)
