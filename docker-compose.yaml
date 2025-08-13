@@ -1,0 +1,23 @@
+services:
+  app:
+    build: .
+    container_name: app
+    ports:
+    - 5000:5000  
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+    volumes:
+    - ./app:/app
+    gpus: all
+    restart: always
+    depends_on:
+      - ollama
+
+  ollama:
+    build: 
+      dockerfile: Dockerfile.ollama
+    container_name: ollama
+    ports:
+      - 11434:11434
+    gpus: all
+    restart: always

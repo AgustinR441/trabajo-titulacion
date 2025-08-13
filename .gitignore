@@ -1,0 +1,5 @@
+test/
+app/audios/
+whisper_adaptation/
+Dockerfile
+app/database.db

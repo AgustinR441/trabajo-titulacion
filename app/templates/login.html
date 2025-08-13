@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light-theme">
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap'" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XXYYZZ | Login</title>
+  <!--favicon-->
+	<link rel="icon" href="{{ url_for('static', filename='assets/images/favicon-32x32.png') }}" type="image/png">
+  <!-- loader-->
+	<link href="{{ url_for('static', filename='assets/css/pace.min.css') }}" rel="stylesheet">
+	<script src="{{ url_for('static', filename='assets/js/pace.min.js') }}"></script>
+
+  <!--plugins-->
+  <link href="{{ url_for('static', filename='assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/plugins/metismenu/metisMenu.min.css') }}">
+  <link href="{{ url_for('static', filename='assets/plugins/fancy-file-uploader/fancy_fileupload.css') }}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/plugins/metismenu/mm-vertical.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/plugins/simplebar/css/simplebar.css') }}">
+  <!--bootstrap css-->
+  <link href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}" rel="stylesheet">
+
+  <!--main css-->
+  <link href="{{ url_for('static', filename='assets/css/bootstrap-extended.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='sass/main.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='sass/dark-theme.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='sass/responsive.css') }}" rel="stylesheet">
+
+</head>
+
+  <body>
+
+    <!--authentication-->
+    <div class="auth-basic-wrapper d-flex align-items-center justify-content-center">
+      <div class="container-fluid my-5 my-lg-0">
+        <div class="row">
+           <div class="col-12 col-md-8 col-lg-6 col-xl-5 col-xxl-4 mx-auto">
+            <div class="card rounded-4 mb-0  border-4 border-primary border-gradient-1">
+              <div class="card-body p-5">
+                  <img src="{{ url_for('static', filename='assets/images/logo-icon.png') }}" class="logo-img" width="60">
+                  <div class="logo-name flex-grow-1">
+                    <h5 class="mb-0">XXYYZZ</h5>
+                  </div>
+                  <h4 class="fw-bold">Iniciar Sesión</h4>
+                  <p class="mb-0">Ingrese sus credenciales para iniciar sesión.</p>
+
+                  <div class="form-body my-5">
+										<form class="row g-3">
+											<div class="col-12">
+												<label for="inputEmailAddress" class="form-label">Usuario</label>
+												<input type="email" class="form-control" id="inputEmailAddress" placeholder="Ingresar usuario">
+											</div>
+											<div class="col-12">
+												<label for="inputChoosePassword" class="form-label">Contraseña</label>
+												<div class="input-group" id="show_hide_password">
+													<input type="password" class="form-control border-end-0" id="inputChoosePassword" value="12345678" placeholder="Ingresar contraseña"> 
+                          <a href="javascript:;" class="input-group-text bg-transparent"><i class="bi bi-eye-slash-fill"></i></a>
+												</div>
+											</div>
+											
+											
+											<div class="col-12">
+												<div class="d-grid">
+													<button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+												</div>
+											</div>
+										
+										</form>
+									</div>
+
+              
+
+
+              </div>
+            </div>
+           </div>
+        </div><!--end row-->
+     </div>
+    </div>
+    <!--authentication-->
+
+
+    <!--plugins-->
+    <script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+
+    <script>
+      $(document).ready(function () {
+        $("#show_hide_password a").on('click', function (event) {
+          event.preventDefault();
+          if ($('#show_hide_password input').attr("type") == "text") {
+            $('#show_hide_password input').attr('type', 'password');
+            $('#show_hide_password i').addClass("bi-eye-slash-fill");
+            $('#show_hide_password i').removeClass("bi-eye-fill");
+          } else if ($('#show_hide_password input').attr("type") == "password") {
+            $('#show_hide_password input').attr('type', 'text');
+            $('#show_hide_password i').removeClass("bi-eye-slash-fill");
+            $('#show_hide_password i').addClass("bi-eye-fill");
+          }
+        });
+      });
+    </script>
+  
+  </body>
+</html>

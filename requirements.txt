@@ -1,0 +1,7 @@
+Flask>=2.0
+ffmpeg-python
+openai-whisper
+ollama
+sentence-transformers>=2.2.0
+joblib
+scikit-learn==1.6.1

@@ -1,0 +1,22 @@
+FROM ollama/ollama:0.9.1-ci3
+USER root
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends curl \
+ && rm -rf /var/lib/apt/lists/*
+RUN ollama serve & \
+    pid=$!; \
+    echo "⏳ Esperando a Ollama en localhost:11434…"; \
+    for i in $(seq 1 30); do \
+      if curl -s http://localhost:11434/ > /dev/null; then \
+        echo "✅ API lista"; \
+        break; \
+      fi; \
+      sleep 1; \
+    done; \
+    echo "⬇️ Descargando modelo deepseek-r1:14b…"; \
+    ollama pull deepseek-r1:14b; \
+    echo "✅ Modelo cacheado"; \
+    kill $pid; \
+    wait $pid || true
+EXPOSE 11434
+ENTRYPOINT ["ollama", "serve"]
