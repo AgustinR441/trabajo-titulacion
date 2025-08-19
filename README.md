@@ -26,6 +26,7 @@ Este repositorio explica la instalación y despliegue local del prototipo de sof
 
 - **Sistema operativo:** Linux o Windows 10/ Windows 11 (con **WSL2** en caso de usar Docker).
 - **Python:** ≥ 3.9. 
+- **Espacio en disco:** 22 GB.
 - **FFmpeg:** Requerido para el manejo de audio.
 - **GPU NVIDIA con soporte CUDA**. 
 - **VRAM mínima recomendada:** 8 GB.
