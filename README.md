@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="app/static/assets/logo.png" alt="Logo" width="300"/>
+</p>
+
 # Trabajo de Titulación
 
 Este repositorio explica la instalación y despliegue local del prototipo de software desarrollado como trabajo de titulación del Teniente Segundo Agustín Riquelme Duque, cuyo tema es:
@@ -18,6 +22,7 @@ Este repositorio explica la instalación y despliegue local del prototipo de sof
   - [API de subida y análisis](#api-de-subida-y-analisis)
 - [Dockerización](#dockerizacion)
 - [Licencia](#licencia)
+- [Referencias](#referencias)
 
 ---
 
@@ -33,7 +38,9 @@ Este repositorio explica la instalación y despliegue local del prototipo de sof
 - **Drivers NVIDIA** + **CUDA Toolkit** compatibles con su versión de PyTorch.
 - **Docker y Docker Compose** (opcional): Para despliegue en contenedores (recomendado).
 
-> Se recomienda ejecutar el proyecto usando **Docker** para reproducibilidad (con **WSL2** si usa **Windows**) .
+> Se recomienda ejecutar el proyecto usando **Docker** para reproducibilidad (con **WSL2** si usa **Windows**).
+
+> En caso de cumplir con los requisitos técnicos, puede saltar a la sección [Instalación del prototipo](#instalacion-local). 
 
 <a id="instalar-wsl2-en-windows"></a>
 ### Instalar WSL2 en Windows (obligatorio solo para ejecución usando **Docker**)
@@ -45,19 +52,6 @@ wsl --install -d Ubuntu
 wsl --set-default-version 2
 ```
 
-Si su Windows no soporta el comando anterior, debe habilitar manualmente y reiniciar:
-
-```powershell
-dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-wsl --set-default-version 2
-```
-
-Tras reiniciar, instale **Ubuntu** desde Microsoft Store o con:
-```powershell
-wsl --install -d Ubuntu
-```
-
 Luego, abrir Ubuntu (WSL) y continúe con las instrucciones para **Linux**.
 
 <a id="instalar-cuda-toolkit-windows-y-linux"></a>
@@ -66,19 +60,19 @@ Luego, abrir Ubuntu (WSL) y continúe con las instrucciones para **Linux**.
 **Windows (controlador + toolkit):**
 1. Instalar el **driver NVIDIA** más reciente para su GPU.
 2. Descargar e instalar **CUDA Toolkit** desde el <a href="https://developer.nvidia.com/cuda-toolkit">sitio oficial de NVIDIA</a>.
-3. Verifique la instalación:
+3. Verificar la instalación:
    ```powershell
    nvcc --version
    ```
 
 **Linux (Ubuntu/Debian):**
-- Opción rápida:
-  ```bash
-  sudo apt-get update
-  sudo apt-get install -y nvidia-cuda-toolkit
-  nvcc --version
-  ```
-- O usar el <a href="https://developer.download.nvidia.com/compute/cuda/repos/">instalador oficial de NVIDIA</a> si necesita una versión específica del toolkit.
+1. Ejecutar los siguientes comandos para instalar y verificar la versión:
+   ```bash
+   sudo apt-get update
+   sudo apt-get install -y nvidia-cuda-toolkit
+   nvcc --version
+   ```
+
 
 <a id="instalar-ffmpeg"></a>
 ### Instalar FFmpeg
@@ -271,18 +265,28 @@ scikit-learn==1.6.1
 <a id="interfaz-web"></a>
 ### Interfaz web
 
+> Verifique que `ollama` se encuentre en ejecución. (solo para una ejecución sin `Docker`)
+
 1. Iniciar la aplicación:
    ```bash
+   cd app
    python app.py
    ```
 2. Abrir en el navegador:
    ```
    http://localhost:5000
    ```
+
+<p align="center">
+  <img src="app/static/assets/inicio.png" alt="Inicio" width="750"/>
+</p>
+
 3. Navegar por:
    - `/` – Página principal y subida de audios.
    - `/colecciones` – Visualización de colecciones.
    - `/modismos` – Administración de modismos y jerga.
+
+> **Importante:** Al procesar audios **por primera vez**, comenzará la descarga de los modelos `OpenAI Whisper-small` y `DeepSeek-R1:14b`, lo cual podría tomar varios minutos.
 
 <a id="api-de-subida-y-analisis"></a>
 ### API de subida y análisis
@@ -295,10 +299,9 @@ scikit-learn==1.6.1
 <a id="dockerizacion"></a>
 ## Dockerización
 
-> Para usar GPU con Docker, debe instalar **NVIDIA Container Toolkit**. El repositorio cuenta con los archivos `Dockerfile`, `Dockerfile.ollama` y `docker-compose.yaml`.
-<a id="dockerfile"></a>
+> Para usar GPU con Docker, debe instalar <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html">**NVIDIA Container Toolkit**</a>.
 
-Para construir y ejecutar: 
+El repositorio ya cuenta con los archivos `Dockerfile`, `Dockerfile.ollama` y `docker-compose.yaml`. Para construir y ejecutar: 
 ```bash
 docker-compose up --build
 ```
@@ -311,3 +314,11 @@ docker-compose up --build
 Este repositorio contiene el código desarrollado para el trabajo de titulación “Transcripción y clasificación automática de audios según su contenido y relevancia”, únicamente para fines académicos.
 
 T2 Agustín Riquelme D., Academia Politécnica Naval © 2025.
+
+<a id="referencias"></a>
+## Referencias
+
+- <a href="https://github.com/microsoft/WSL">Windows Subsystem for Linux (WSL)</a>
+- <a href="https://developer.nvidia.com/cuda-toolkit">NVIDIA CUDA Toolkit</a>
+- <a href="https://github.com/oop7/ffmpeg-install-guide">FFMpeg</a> y <a href="https://winget.run/pkg/Gyan/FFmpeg">winget</a>
+- <a href="https://github.com/pytorch/pytorch">PyTorch CUDA</a>
